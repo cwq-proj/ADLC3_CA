@@ -52,7 +52,7 @@ jobs:
                   },
                   {
                     "type": "mrkdwn",
-                    "text": "*Email:* <mailto:${{ env.EMAIL }}|${{ env.EMAIL }}>"
+                    "text": "*Email:* <mailto:${{ secrets.EMAIL }}|${{ secrets.EMAIL }}>"
                   },
                   {
                     "type": "mrkdwn",
