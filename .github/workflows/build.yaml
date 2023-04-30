@@ -1,4 +1,4 @@
-name: ADLC3 CA
+name: ADLC3_CA
 # https://docs.github.com/en/actions/using-workflows/triggering-a-workflow
 on:
   push:
@@ -24,3 +24,73 @@ jobs:
 
     - name: Echo repo link
       run: echo ${{ env.REPO_URL }}
+
+    - name: Send custom JSON data to Slack workflow
+      id: slack
+      uses: slackapi/slack-github-action@v1.23.0
+      with:
+        # Posting block kit message from slack 
+        payload: |
+          {
+            "blocks": [
+              {
+                "type": "divider"
+              },
+              {
+                "type": "header",
+                "text": {
+                  "type": "plain_text",
+                  "text": "DipSA56 CI/CD Submission"
+                }
+              },
+              {
+                "type": "section",
+                "fields": [
+                  {
+                    "type": "mrkdwn",
+                    "text": "*Name:* Chan Wei Quan"
+                  },
+                  {
+                    "type": "mrkdwn",
+                    "text": "*Email:* <mailto:${{ env.EMAIL }}|${{ env.EMAIL }}>"
+                  },
+                  {
+                    "type": "mrkdwn",
+                    "text": "*Matriculation:* A0269482N"
+                  },
+                  {
+                    "type": "mrkdwn",
+                    "text": "*Repository:*"
+                  },
+                  {
+                    "type": "mrkdwn",
+                    "text": " "
+                  },
+                  {
+                    "type": "mrkdwn",
+                    "text": "<${{ env.REPO_URL }}|${{ env.REPO_URL }}>"
+                  }
+                ]
+              },
+              {
+                "type": "section",
+                "text": {
+                  "type": "mrkdwn",
+                  "text": "INSERT RAILWAY LINK HERE"
+                },
+                "accessory": {
+                  "type": "button",
+                  "text": {
+                    "type": "plain_text",
+                    "text": "Go",
+                    "emoji": true
+                  },
+                  "value": "click_me_123",
+                  "action_id": "button-action"
+                }
+              }
+            ]
+          }
+      env:
+        SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+        SLACK_WEBHOOK_TYPE: INCOMING_WEBHOOK
