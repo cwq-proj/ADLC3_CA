@@ -19,12 +19,6 @@ jobs:
     - name: checkout-source
       uses: actions/checkout@v3
 
-    - name: Echo email
-      run: echo ${{ env.EMAIL }}
-
-    - name: Echo repo link
-      run: echo ${{ env.REPO_URL }}
-
     - name: Send custom JSON data to Slack workflow
       id: slack
       uses: slackapi/slack-github-action@v1.23.0
@@ -76,7 +70,7 @@ jobs:
                 "type": "section",
                 "text": {
                   "type": "mrkdwn",
-                  "text": "${{ vars.RAILWAY_LINK }}"
+                  "text": "${{ secrets.RAILWAY_LINK }}"
                 },
                 "accessory": {
                   "type": "button",
