@@ -10,7 +10,7 @@ on:
 jobs:
   adlc_workflow:
     runs-on: ubuntu-latest
-    # If commit message starts with #NORUN, it will not be triggered
+    # If the commit message starts with #NORUN, it will not be triggered
     if: "!startsWith(github.event.head_commit.message, '#NORUN')"
 
     steps:
