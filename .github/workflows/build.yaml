@@ -68,7 +68,7 @@ jobs:
                   },
                   {
                     "type": "mrkdwn",
-                    "text": "<${{ github.server_url }}${{ github.repository }}|${{ github.server_url }}${{ github.repository }}>"
+                    "text": "<${{ github.server_url }}/${{ github.repository }}|${{ github.server_url }}/${{ github.repository }}>"
                   }
                 ]
               },
@@ -76,7 +76,7 @@ jobs:
                 "type": "section",
                 "text": {
                   "type": "mrkdwn",
-                  "text": "${{ vars.RAILWAY_LINK }}""
+                  "text": "${{ vars.RAILWAY_LINK }}"
                 },
                 "accessory": {
                   "type": "button",
