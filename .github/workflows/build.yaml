@@ -19,6 +19,19 @@ jobs:
     - name: checkout-source
       uses: actions/checkout@v3
 
+    - name: Deploy railway
+      uses: bervProject/railway-deploy@main
+      with:
+        railway_token: ${{ secrets.RAILWAY_TOKEN }}
+        service: "my-service"
+
+    - name: Setup node js
+      uses: actions/setup-node@v3
+      with:
+        node-version: 16
+    - run: npm ci
+    - run: npm test
+
     - name: Send custom JSON data to Slack workflow
       id: slack
       uses: slackapi/slack-github-action@v1.23.0
