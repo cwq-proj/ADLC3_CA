@@ -23,7 +23,7 @@ jobs:
       uses: bervProject/railway-deploy@main
       with:
         railway_token: ${{ secrets.RAILWAY_TOKEN }}
-        service: "my-service"
+        service: "fallacious-observation"
 
     - name: Setup node js
       uses: actions/setup-node@v3
