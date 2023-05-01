@@ -68,7 +68,7 @@ jobs:
                   },
                   {
                     "type": "mrkdwn",
-                    "text": "<${{ vars.REPO_URL }}|${{ vars.REPO_URL }}>"
+                    "text": "<${{ vars.REPO_LINK }}|${{ vars.REPO_LINK }}>"
                   }
                 ]
               },
