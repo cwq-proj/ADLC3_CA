@@ -25,17 +25,6 @@ jobs:
         railway_token: ${{ secrets.RAILWAY_TOKEN }}
         service: ${{ secrets.RAILWAY_SERVICE }}
 
-    - name: Setup node js
-      uses: actions/setup-node@v3
-      with:
-        node-version: 16
-
-    - name: generate the package-lock.json file
-      run: npm install
-
-    - run: npm ci
-    - run: npm test
-
     - name: Send custom JSON data to Slack workflow
       id: slack
       uses: slackapi/slack-github-action@v1.23.0
