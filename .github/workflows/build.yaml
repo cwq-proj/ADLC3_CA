@@ -6,7 +6,7 @@ on:
     branches:
       - 'release/v[0-9]+.[0-9]+'
       # If the commit message starts with '#NORUN', it will not be executed
-      if: "!startsWith(github.event.head_commit.message, '#NORUN')"
+      if: "startsWith(github.event.head_commit.message, '#NORUN') != true"
       # The condition to check if commit message starts with #NORUN is on line 14
       
 jobs:
