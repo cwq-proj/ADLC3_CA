@@ -22,9 +22,10 @@ jobs:
     # Workflow to Deploy Railway
     - name: Deploy railway
       uses: bervProject/railway-deploy@main
+      env:
+      RAILWAY_TOKEN: ${{ secrets.RAILWAY_TOKEN }}
       with:
-        railway_token: ${{ secrets.RAILWAY_TOKEN }}
-        service: ${{ secrets.RAILWAY_SERVICE }}
+      service: ${{ secrets.RAILWAY_SERVICE }}
 
     # Send notification to slack chat
     - name: Send custom JSON data to Slack workflow
