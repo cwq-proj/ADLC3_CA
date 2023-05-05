@@ -15,16 +15,18 @@ jobs:
 
     steps:
 
-    # Source: https://github.com/marketplace/actions/setup-go-environment
+    # Checkout 
     - name: checkout-source
       uses: actions/checkout@v3
 
+    # Workflow to Deploy Railway
     - name: Deploy railway
       uses: bervProject/railway-deploy@main
       with:
         railway_token: ${{ secrets.RAILWAY_TOKEN }}
         service: ${{ secrets.RAILWAY_SERVICE }}
 
+    # Send notification to slack chat
     - name: Send custom JSON data to Slack workflow
       id: slack
       uses: slackapi/slack-github-action@v1.23.0
@@ -48,7 +50,7 @@ jobs:
                 "fields": [
                   {
                     "type": "mrkdwn",
-                    "text": "*Name:* Chan Wei Quan"
+                    "text": "*Name:* ${{ secrets.USERNAME }}"
                   },
                   {
                     "type": "mrkdwn",
@@ -56,7 +58,7 @@ jobs:
                   },
                   {
                     "type": "mrkdwn",
-                    "text": "*Matriculation:* A0269482N"
+                    "text": "*Matriculation:* #{{ secrets.MATRICULATION_NUMBER }}"
                   },
                   {
                     "type": "mrkdwn",
@@ -85,7 +87,8 @@ jobs:
                     "text": "Go",
                     "emoji": true
                   },
-                  "value": "click_me_123",
+                  "value": "Go",
+                  "url": "${{ secrets.RAILWAY_LINK }}",
                   "action_id": "button-action"
                 }
               }
