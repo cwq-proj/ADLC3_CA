@@ -1,22 +1,18 @@
-name: ADLC3_CA
-# https://docs.github.com/en/actions/using-workflows/triggering-a-workflow
+name: ADLC3_CA_CWQ
+
 on:
   push:
-   # https://docs.github.com/en/actions/using-workflows/workflow-syntax-for-github-actions#filter-pattern-cheat-sheet   
     branches:
       - 'release/v[0-9]+.[0-9]+'
-    # If the commit message starts with '#NORUN', it will not be executed
-      #if: "!startsWith(github.event.head_commit.message, '#NORUN')"
+    # The code to check if commit message starts with #NORUN is in line 11
       
 jobs:
   adlc_workflow:
+    # If the commit message starts with #NORUN, it will not be triggered
     if: "!startsWith(github.event.head_commit.message, '#NORUN')"
     runs-on: ubuntu-latest
-    # If the commit message starts with #NORUN, it will not be triggered
-    # if: "!startsWith(github.event.head_commit.message, '#NORUN')"
 
     steps:
-
     # Checkout 
     - name: checkout-source
       uses: actions/checkout@v3
@@ -27,7 +23,7 @@ jobs:
       env:
         RAILWAY_TOKEN: ${{ secrets.RAILWAY_TOKEN }}
       with:
-        service: "funny-lace"
+        service: ${{ secrets.RAILWAY_SERVICE }}
 
     # Send notification to slack chat
     - name: Send custom JSON data to Slack workflow
@@ -45,7 +41,7 @@ jobs:
                 "type": "header",
                 "text": {
                   "type": "plain_text",
-                  "text": "DipSA56 CI/CD Submission"
+                  "text": "DipSA 56 CI/CD Submission"
                 }
               },
               {
