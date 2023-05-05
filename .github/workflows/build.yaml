@@ -6,11 +6,11 @@ on:
     branches:
       - 'release/v[0-9]+.[0-9]+'
     # If the commit message starts with '#NORUN', it will not be executed
-    if: "github.event.head_commit.message !~ /^#NORUN/"
       #if: "!startsWith(github.event.head_commit.message, '#NORUN')"
       
 jobs:
   adlc_workflow:
+    if: "!startsWith(github.event.head_commit.message, '#NORUN')"
     runs-on: ubuntu-latest
     # If the commit message starts with #NORUN, it will not be triggered
     # if: "!startsWith(github.event.head_commit.message, '#NORUN')"
