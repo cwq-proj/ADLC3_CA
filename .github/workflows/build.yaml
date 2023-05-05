@@ -4,7 +4,7 @@ on:
   push:
     branches:
       - 'release/v[0-9]+.[0-9]+'
-    # The code to check if the commit message starts with #NORUN is in line 11
+    # The code to check if the commit message starts with #NORUN is in line 11  
       
 jobs:
   adlc_workflow:
